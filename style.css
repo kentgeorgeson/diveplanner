@@ -14,7 +14,7 @@ main {
 }
 
 nav {
-    background-color: darkgreen;
+    background-color: #06263a;
 }
 
 .navbar {
@@ -61,22 +61,22 @@ nav {
 .divechart {
     grid-area: divechart;
     min-height: 200px;
-    background-color: #ccc;
+    background-color:  	#175963;
 }
 
 .diveplan {
     grid-area: diveplan;
-    background-color: #eee;
+    background-color: #fff;
 }
 
 .diveconfig {
     grid-area: diveconfig;
-    background-color: #666;
+    background-color: #06263a;
     padding-top: 20px;
     padding-bottom: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 20px;
     align-items: center;
 }
 
@@ -90,20 +90,6 @@ nav {
     width: 60px;
 }
 
-.row {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-}
-
-.col {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
-}
-
 .table {
     margin-top: 20px;
     display: grid;
@@ -115,7 +101,7 @@ nav {
     display: grid;
     padding: 0px 10px 10px 0px;
     grid-template-columns: repeat(5, 1fr) 80px;
-    grid-gap: 5px;
+    grid-gap: 10px;
 }
 
 .table-row button {
@@ -150,7 +136,7 @@ nav {
 .ascend-row,
 .descend-row {
     color: #666;
-    background-color: #eee;
+    background-color:  #fff;
 }
 
 .ascend-row i,
@@ -206,6 +192,10 @@ nav {
     color: white;
 }
 
+.center {
+    text-align: center;
+}
+
 @media only screen and (max-width: 600px) {
     main {
         display: grid;
@@ -217,3 +207,4 @@ nav {
         grid-template-columns: 1fr;
     }
 }
+

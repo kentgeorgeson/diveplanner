@@ -1,7 +1,7 @@
 function drawDivePlan() {
     var c = document.getElementById("diveplan");
     var ctx = c.getContext("2d");
-    ctx.strokeStyle = "#178ba7";
+    ctx.strokeStyle = "#6fffe9";
     ctx.clearRect(0, 0, c.width, c.height);
     var width = c.width;
     var height = c.height;
@@ -19,7 +19,7 @@ function drawDivePlan() {
     var depth = 0 + startx;
 
     $('.stop-row').each( function() {
-        ctx.strokeStyle = "#068d29";
+        ctx.strokeStyle = "#fff";
         ctx.beginPath();
         ctx.moveTo(time * scalefactor, depth * scalefactor);
         depth = parseFloat($(this).find('input.depth').val()) + starty
