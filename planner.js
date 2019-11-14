@@ -1,41 +1,71 @@
+function markTime(time) {
+    var c = document.getElementById("diveplan");
+    var ctx = c.getContext("2d");
+    var timescalefactor = 10.0;
+    ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
+    ctx.strokeStyle = "#fff";
+    ctx.font = "15px Arial";
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+    ctx.moveTo(time * timescalefactor, 0);
+    ctx.lineTo(time * timescalefactor, c.height - 30);
+    ctx.stroke();
+    ctx.fillText(time, (time * timescalefactor) - 1, c.height - 15)
+}
+
+function markStop(fromtime, fromdepth, totime, todepth) {
+    var c = document.getElementById("diveplan");
+    var ctx = c.getContext("2d");
+    var timescalefactor = 10.0;
+    ctx.setLineDash([0]);/*dashes are 5px and spaces are 3px*/
+    ctx.strokeStyle = "#fff";
+    ctx.beginPath();
+    ctx.moveTo(fromtime * timescalefactor, fromdepth);
+    ctx.lineTo(totime * timescalefactor, todepth);
+    ctx.stroke();
+}
+
 function drawDivePlan() {
     var c = document.getElementById("diveplan");
+    c.setAttribute('width', '400');
+    c.setAttribute('height', '170');   
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     var width = c.width;
     var height = c.height;
-    
-    var startx = 10;
-    var starty = 10;
+   
     var count = 1;
-    var time = 0 + starty;
-    var depth = 0 + startx;
+    var time = 0;
+    var depth = 0; 
 
     $('.stop-row').each( function() {
         
-        ctx.strokeStyle = "#fff";
-        ctx.beginPath();
-        ctx.moveTo(time, depth);
-        depth = parseFloat($(this).find('input.depth').val()) + starty
-        descendtime = depth / parseFloat($(this).find('descent-rate').val())
-        time = time + parseFloat($(this).find('input.time').val())
-        ctx.lineTo(time, depth);
-        ctx.stroke();
+        var prevtime = Math.ceil(parseFloat(time));
+        var prevdepth = Math.ceil(parseFloat(depth));
+        
+        newdepth = parseFloat($(this).find('.depth').val()) - depth;
+        if (newdepth >= 0) {
+            timetodepth = Math.ceil(newdepth / parseFloat($('#descent-rate').val()))
+        } else {
+            timetodepth = Math.ceil(Math.abs(newdepth) / parseFloat($('#ascent-rate').val()))
+        }
+        time = Math.ceil(prevtime + timetodepth);
+        depth = Math.ceil(prevdepth + newdepth);
 
-        /* Start at previous X & Y */
+        markStop(prevtime, prevdepth, time, depth);
+        prevtime = time;
 
-        /* Calc Change in depth */
-            /* If descending, take descend depth * rate of descent */
-
-            /* If ascending, take ascend depth * rate of ascend */
-
-            /* add to time */
-
-        /* Draw previous to at depth */
-
-        /* Maintain depth for duration given and draw from arrival to departure */
-
+        timeatdepth = Math.ceil(parseFloat($(this).find('input.time').val()));
+        time = prevtime + timeatdepth;
+        markStop(prevtime, depth, time, depth);
+        markTime(time);
+        count++;
     });
+    
+    finaltime = Math.round(parseFloat($('.total-time').val()))
+    markStop(time, depth, finaltime, 0);
+    
+
 }
 
 function calcTotals() {
@@ -141,11 +171,18 @@ function calcTotals() {
 }
 
 $(document).on('click', '.duplicate-row', function() {
-        $(this).parent().parent().clone().insertAfter( $(this).parent().parent() );
+    $(this).parent().parent().clone().insertAfter( $(this).parent().parent() );
+    calcTotals();
 });
 
 $(document).on('click', '.remove-row', function() {
     $(this).parent().parent().remove();
+    calcTotals();
+});
+
+
+$(document).on('click', 'input', function() {
+    $(this).select();
 });
 
 $(document).on('keyup', '.edit-field', function() {

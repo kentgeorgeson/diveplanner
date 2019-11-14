@@ -62,6 +62,7 @@ nav {
     grid-area: divechart;
     min-height: 200px;
     background-color:  	#175963;
+    padding: 20px;
 }
 
 .diveplan {
@@ -196,7 +197,7 @@ nav {
     text-align: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     main {
         display: grid;
         grid-template-areas:
