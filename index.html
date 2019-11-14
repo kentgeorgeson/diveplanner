@@ -23,11 +23,12 @@
                 <li class="nav-item"><a href="#">Doc</a></li>
             </ul>
         </nav>
-        <main>     
+        <main>
             <div class="divechart">
                 <canvas id="diveplan"></canvas>
             </div>
             <div class="diveslate">
+                <span class='slate-heading'>Your Dive Slate</span>
                 <div class="table">
                     <div class="table-row header-row">
                         <div class="table-col">
@@ -40,7 +41,7 @@
                             TP
                         </div>
                     </div>
-                    <div class="table-row data-row slate-row">
+                    <div class="table-row slate-data-row slate-row">
                         <div class="table-col">
                             <input
                                 readonly
@@ -76,6 +77,9 @@
                     <div class="table">
                         <div class="table-row header-row">
                             <div class="table-col">
+                                &nbsp;
+                            </div>
+                            <div class="table-col">
                                 D
                             </div>
                             <div class="table-col">
@@ -87,14 +91,24 @@
                             <div class="table-col">
                                 t
                             </div>
+                            <div class="table-col run-time">
+                                Run t
+                            </div>
                             <div class="table-col">
                                 Vol
+                            </div>
+                            <div class="table-col run-vol">
+                                Run Vol
                             </div>
                             <div class="table-col">
                                 &nbsp;
                             </div>
                         </div>
                         <div class="table-row data-row stop-row">
+                            <div class="table-col row-label">
+                                <i class="far fa-hand-paper"></i
+                                ><span class="table-label">Stop</span>
+                            </div>
                             <div class="table-col">
                                 <input
                                     required
@@ -106,7 +120,7 @@
                             </div>
                             <div class="table-col">
                                 <input
-                                    readonly=True3
+                                    readonly="True3"
                                     class="ro-field ap"
                                     type="number"
                                     min="0"
@@ -130,6 +144,15 @@
                                     max="999"
                                 />
                             </div>
+                            <div class="table-col run-time">
+                                <input
+                                    readonly
+                                    class="ro-field cumulative-time"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
                             <div class="table-col">
                                 <input
                                     readonly
@@ -139,12 +162,25 @@
                                     max="999"
                                 />
                             </div>
-                            <div class="table-col center">
+                            <div class="table-col  run-vol">
+                                <input
+                                    readonly
+                                    class="ro-field cumulative-vol"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col actions center">
                                 <button class="duplicate-row">+</button>
                                 <button class="remove-row">-</button>
                             </div>
                         </div>
                         <div class="table-row data-row descend-row">
+                            <div class="table-col row-label">
+                                <i class="far fa-thumbs-down"></i
+                                ><span class="table-label">Descent</span>
+                            </div>
                             <div class="table-col">
                                 <input
                                     readonly
@@ -181,6 +217,9 @@
                                     max="999"
                                 />
                             </div>
+                            <div class="table-col run-time">
+                                &nbsp;
+                            </div>
                             <div class="table-col">
                                 <input
                                     readonly
@@ -190,11 +229,18 @@
                                     max="999"
                                 />
                             </div>
-                            <div class="table-col">
-                                    <span class="table-label"><i class="far fa-thumbs-down"></i>Descent</span>
+                            <div class="table-col run-vol">
+                                &nbsp;
+                            </div>
+                            <div class="table-col center">
+                                &nbsp;
                             </div>
                         </div>
                         <div class="table-row data-row ascend-row">
+                            <div class="table-col row-label">
+                                <i class="far fa-thumbs-up"></i
+                                ><span class="table-label">Ascent</span>
+                            </div>
                             <div class="table-col">
                                 <input
                                     readonly
@@ -231,6 +277,9 @@
                                     max="999"
                                 />
                             </div>
+                            <div class="table-col run-time">
+                                &nbsp;
+                            </div>
                             <div class="table-col">
                                 <input
                                     readonly
@@ -240,12 +289,19 @@
                                     max="999"
                                 />
                             </div>
-                            <div class="table-col">
-                                    <span class="table-label"><i class="far fa-thumbs-up"></i>Ascent</span>
+                            <div class="table-col run-vol">
+                                &nbsp;
+                            </div>
+                            <div class="table-col center">
+                                &nbsp;
                             </div>
                         </div>
                         <div class="table-row data-row reserve-row">
                             <div class="table-col">
+                                <i class="fas fa-briefcase-medical"></i
+                                ><span class="table-label">Reserve</span>
+                            </div>
+                            <div class="table-col center">
                                 &nbsp;
                             </div>
                             <div class="table-col">
@@ -255,7 +311,10 @@
                                 &nbsp;
                             </div>
                             <div class="table-col">
-                                <span class="reserve-label">Reserve</span>
+                                &nbsp;
+                            </div>
+                            <div class="table-col run-time">
+                                &nbsp;
                             </div>
                             <div class="table-col">
                                 <input
@@ -266,7 +325,10 @@
                                     max="999"
                                 />
                             </div>
-                            <div class="table-col">
+                            <div class="table-col run-vol">
+                                &nbsp;
+                            </div>
+                            <div class="table-col center">
                                 &nbsp;
                             </div>
                         </div>
@@ -275,6 +337,9 @@
                         <div class="total-table">
                             <div class="table-row">
                                 <div class="table-col">
+                                    &nbsp;
+                                </div>
+                                <div class="table-col center">
                                     &nbsp;
                                 </div>
                                 <div class="table-col">
@@ -289,11 +354,17 @@
                                         class="ro-field total-field total-time"
                                     />
                                 </div>
+                                <div class="table-col run-time">
+                                    &nbsp;
+                                </div>
                                 <div class="table-col">
                                     <input
                                         readonly
                                         class="ro-field total-field total-vol"
                                     />
+                                </div>
+                                <div class="table-col run-vol">
+                                    &nbsp;
                                 </div>
                                 <div class="table-col">
                                     &nbsp;

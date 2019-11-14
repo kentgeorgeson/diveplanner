@@ -1,3 +1,63 @@
+function refreshSlate() {
+
+    var count = 0;
+    var cumulativetime = 0;
+    var cumulativevol = 0;
+    var startingvol = parseFloat($('.starting-pressure').val());
+    var tanksize = parseFloat($('.tank-size').val());
+
+    $('.slate-row').remove();
+    $('.stop-row').each( function() {
+        var insertString = '<div id="stop' + count + '" class="table-row slate-data-row slate-row"></div>';
+        if (count==0) {
+            $(insertString).insertAfter(".diveslate .header-row");
+        } else {
+            $(insertString).insertAfter(".diveslate .slate-row:last-of-type");
+        }
+
+        insertString = '<div class="table-col"><input readonly id="slate-depth-' + count + '" class="ro-field slate-depth" type="number" min="0" max="999"/> </div>';
+        insertString += '<div class="table-col"><input readonly id="slate-time-' + count + '" class="ro-field slate-time" type="number" min="0" max="99"/> </div>';
+        insertString += '<div class="table-col"><input readonly id="slate-tp-' + count + '" class="ro-field slate-tp" type="number" min="0" max="9999"/> </div>';
+        $(".diveslate .slate-row:last-of-type").html(insertString);
+
+        $('#slate-depth-' + count).val(parseFloat($(this).find('input.depth').val()));
+
+        cumulativetime += parseFloat($(this).find('input.time').val());
+        $('#slate-time-' + count).val(cumulativetime);
+
+        cumulativevol += parseFloat($(this).find('input.vol').val());
+        consumedpsi = Math.round(cumulativevol / tanksize * startingvol / 100) * 100;
+        turningpoint = startingvol - consumedpsi
+        $('#slate-tp-' + count).val(turningpoint);
+
+        count++;
+    });
+
+    count++;
+    var insertString = '<div id="stop' + count + '" class="table-row slate-data-row slate-row"></div>';
+    if (count==0) {
+        $(insertString).insertAfter(".diveslate .header-row");
+    } else {
+        $(insertString).insertAfter(".diveslate .slate-row:last-of-type");
+    }
+
+    insertString = '<div class="table-col"><input readonly id="slate-depth-' + count + '" class="ro-field slate-depth" type="number" min="0" max="999"/> </div>';
+    insertString += '<div class="table-col"><input readonly id="slate-time-' + count + '" class="ro-field slate-time" type="number" min="0" max="99"/> </div>';
+    insertString += '<div class="table-col"><input readonly id="slate-tp-' + count + '" class="ro-field slate-tp" type="number" min="0" max="9999"/> </div>';
+    $(".diveslate .slate-row:last-of-type").html(insertString);
+
+    $('#slate-depth-' + count).val(0);
+    $('#slate-time-' + count).val(Math.round(parseFloat($('.total-time').val())));
+
+    cumulativevol = parseFloat($('.total-vol').val());
+    reservevol = parseFloat($('.end-psi').val());
+    consumedpsi = Math.round(cumulativevol / tanksize * startingvol / 100) * 100;
+    turningpoint = startingvol - consumedpsi + reservevol
+    $('#slate-tp-' + count).val(turningpoint);
+
+}
+
+
 function markTime(time) {
     var c = document.getElementById("diveplan");
     var ctx = c.getContext("2d");
@@ -25,7 +85,7 @@ function markStop(fromtime, fromdepth, totime, todepth) {
     ctx.stroke();
 }
 
-function drawDivePlan() {
+function calcDivePlan() {
     var c = document.getElementById("diveplan");
     c.setAttribute('width', '400');
     c.setAttribute('height', '170');   
@@ -37,6 +97,7 @@ function drawDivePlan() {
     var count = 1;
     var time = 0;
     var depth = 0; 
+    var runvol = 0;
 
     $('.stop-row').each( function() {
         
@@ -52,24 +113,29 @@ function drawDivePlan() {
         time = Math.ceil(prevtime + timetodepth);
         depth = Math.ceil(prevdepth + newdepth);
 
+        runvol += parseFloat($(this).find('.vol').val())
+        
+
         markStop(prevtime, prevdepth, time, depth);
         prevtime = time;
+
+        
 
         timeatdepth = Math.ceil(parseFloat($(this).find('input.time').val()));
         time = prevtime + timeatdepth;
         markStop(prevtime, depth, time, depth);
         markTime(time);
-        count++;
-    });
-    
-    finaltime = Math.round(parseFloat($('.total-time').val()))
-    markStop(time, depth, finaltime, 0);
-    
 
+        $(this).find('input.cumulative-time').val(time)
+        $(this).find('input.cumulative-vol').val(runvol)
+
+        count++;
+    });   
+    finaltime = Math.round(parseFloat($('.total-time').val()))
+    markStop(time, depth, finaltime, 0);    
 }
 
 function calcTotals() {
-
     var sum = 0;
     var count = 0;
     var max = 0
@@ -141,7 +207,7 @@ function calcTotals() {
     });
     $('.total-time').val(sum);
 
-    var reservevol = Math.round(parseFloat($('.end-psi').val()) / 3000 * parseFloat($('.tank-size').val()) * 10 ) /10
+    var reservevol = Math.round(parseFloat($('.end-psi').val()) / parseFloat($('.starting-pressure').val()) * parseFloat($('.tank-size').val()) * 10 ) /10
     $('.reserve-vol').val(reservevol)
 
     sum = 0;
@@ -167,7 +233,8 @@ function calcTotals() {
         $('.total-vol').addClass('gas-plenty'); 
     }
 
-    drawDivePlan();
+    calcDivePlan();
+    refreshSlate()
 }
 
 $(document).on('click', '.duplicate-row', function() {

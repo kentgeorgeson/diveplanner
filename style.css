@@ -20,7 +20,7 @@ nav {
 .navbar {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; /* Center Vertical */
 }
 
 .navbar a {
@@ -67,16 +67,13 @@ nav {
 
 .diveslate {
     grid-area: diveslate;
+    width: 100%;
     background-color: #175963c2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    justify-items: center;
 }
 
-.diveslate .table {
-    width: 100%;
-}
+
+
+
 .diveplan {
     grid-area: diveplan;
     background-color: #fff;
@@ -85,17 +82,15 @@ nav {
 .diveconfig {
     grid-area: diveconfig;
     background-color: #06263a;
-    padding-top: 20px;
-    padding-bottom: 40px;
+    padding: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    align-items: center;
 }
 
 .diveconfig label {
-    text-align: right;
     color: #eee;
+    text-align: right;
 }
 
 .diveconfig input {
@@ -104,66 +99,82 @@ nav {
 }
 
 .table {
-    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr;
-    align-items: center;
 }
 
 .table-row {
     display: grid;
-    padding: 0px 10px 10px 0px;
-    grid-template-columns: repeat(5, 1fr) 120px;
-    grid-gap: 10px;
+    grid-template-columns: 120px repeat(8, 1fr);
+    column-gap: 10px;
+    row-gap: 5px;
+    justify-items: right;
+    align-items: center;
 }
 
+.data-row:nth-child(odd) {
+    background: #17596338;
+}
+
+.table-row .actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+}
 .table-row button {
+    display: block;
+    width: 100%;
     height: 100%;
-    font-size: 11pt;
+    margin-right: 4px;
+    font-size: 9pt;
     border: none;
     font-weight: bold;
     color: blue;
 }
 .table-row input {
-    width: 100%;
     text-align: right;
+    width: 100%;
 }
 
 .table-row input.ascend,
-.table-row input.descend {
-    width: 80%;
-    float: right;
-    margin-right: -2px;
+.table-row input.descend,
+.table-row input.reserve-vol  {
     background: transparent;
-}
-
-.table-col {
-    text-align: right;
-}
-
-.table-label {
-    display: block;
-    text-align: left;
+    color: #888;
 }
 
 .ascend-row,
-.descend-row {
-    color: #666;
+.descend-row,
+.reserve-row {
+    color: #888;
     background-color:  #fff;
+
+    padding-top: 2px;
 }
 
 .ascend-row i,
-.descend-row i {
-    padding: 2px;
+.descend-row i,
+.reserve-row i,
+.data-row i {
+    margin-right: 5px;
+    float: right;
+}
+
+.ascend-row span,
+.descend-row span,
+.reserve-row span,
+.data-row span {
+    margin-right: 10px;
 }
 
 .header-row {
-    color: #666;
-    text-align: center;
+    color: #fff;
+    background: #06263a;
+    justify-items: right;
+    padding-top: 5px;
 }
+
 .total-table {
-    margin-top: 10px;
-    border-top: 1px solid black;
 }
 
 .total-field {
@@ -209,16 +220,62 @@ nav {
     text-align: center;
 }
 
+
+.diveslate .table {
+    margin: 20px 20px;
+    background: white;
+    box-shadow: 
+       inset 0 -3em 3em rgba(0,0,0,0.1), 
+             0 0  0 2px rgb(255,255,255),
+             0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+.diveslate .table-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
+
+.diveslate input {
+    text-align: center !important;
+}
+
+.slate-heading {
+    display: block;
+    padding-top: 20px;
+    color: #fff;
+    text-align: center;
+}
+
 @media only screen and (max-width: 800px) {
     main {
-        display: grid;
         grid-template-areas:
             "divechart"
             "diveplan"
             "diveslate"
             "diveconfig";
         grid-template-rows: 1fr;
-        grid-template-columns: 1fr;
+        grid-template-columns: 100vw;
+    }
+
+    .table-row {
+        grid-template-columns: 30px repeat(6, 1fr) 5px;
+    }
+
+    .diveslate .table-row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .run-vol {
+        display: none;
+    }
+
+    .run-time {
+        display: none;
+    }
+
+    .table-label {
+        display: none;
     }
 }
 
