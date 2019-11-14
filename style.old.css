@@ -1,0 +1,120 @@
+.navbar {
+    border-bottom: 1px solid grey;
+}
+
+body {
+    font-family: sans-serif;
+    width: 320px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.config {
+    margin-top: 20px;
+
+}
+
+.chart {
+    min-height: 200px;
+}
+
+.config {
+    min-height: 40px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+.col {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.table {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(20px, auto);
+    align-items: center;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(6, 45px);
+    grid-gap: 10px;
+}
+
+.table-row input {
+    width: 100%;
+    font-size: 10px;
+}
+
+.table-row input.ascend, 
+.table-row input.descend {
+    width: 80%;
+    float: right;
+    margin-right: -2px;
+    background: transparent;
+}
+
+.table-col {
+    text-align: right;
+}
+
+.ascend-row,
+.descend-row {
+    color: #666;
+    background-color: #eee;
+}
+
+.ascend-row i,
+.descend-row i {
+    padding: 2px;
+}
+
+.header-row {
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+}
+.total-table {
+    margin-top: 10px;
+    border-top: 1px solid black;
+}
+
+.total-field {
+    border: none;
+    font-weight: bold;
+}
+
+.total-field input {
+    margin-right: 20px;
+}
+
+.edit-field {
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.ro-field {
+    border: none;
+}
+
+.reserve-label {
+    display: block;
+    font-size: 12px;
+    padding-top: 5px;
+}
+

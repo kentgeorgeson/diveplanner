@@ -117,10 +117,16 @@ function calcTotals() {
 
     if (parseFloat($('.total-vol').val()) >= parseFloat($('.tank-size').val())) {
         $('.total-vol').addClass('gas-out');
+        $('.total-vol').removeClass('gas-warn'); 
+        $('.total-vol').removeClass('gas-plenty');
     } else if (parseFloat($('.total-vol').val()) >= parseFloat($('.tank-size').val())*.9) {
-        $('.total-vol').addClass('gas-warn');
+        $('.total-vol').removeClass('gas-out');
+        $('.total-vol').addClass('gas-warn'); 
+        $('.total-vol').removeClass('gas-plenty'); 
     } else {
-        $('.total-vol').addClass('gas-plents'); 
+        $('.total-vol').removeClass('gas-out');
+        $('.total-vol').removeClass('gas-warn'); 
+        $('.total-vol').addClass('gas-plenty'); 
     }
 
     drawDivePlan();

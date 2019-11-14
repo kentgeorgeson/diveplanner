@@ -1,33 +1,93 @@
-.navbar {
-    border-bottom: 1px solid grey;
-}
-
 body {
     font-family: sans-serif;
-    width: 760px;
     min-height: 100vh;
     margin: 0 auto;
-    border: 1px solid;
-    padding: 10px;
-}
-
-.config {
-    margin-top: 20px;
-
-}
-
-.chart {
-    min-height: 200px;
-    background: #ccc;
-}
-
-.config {
-    min-height: 40px;
 }
 
 main {
+    display: grid;
+    grid-template-areas:
+        "divechart divechart"
+        "diveplan diveconfig";
+    grid-template-rows: 200px 1fr;
+    grid-template-columns: 2fr 1fr;
+}
+
+nav {
+    background-color: darkgreen;
+}
+
+.navbar {
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: white;
+}
+
+.logo {
+    display: inline-block;
+    padding-left: 10px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-item a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item:hover {
+    background-color: white;
+}
+
+.nav-item:hover a {
+    color: darkgreen;
+}
+
+.logo img {
+    width: 100px;
+    vertical-align: middle;
+}
+
+.divechart {
+    grid-area: divechart;
+    min-height: 200px;
+    background-color: #ccc;
+}
+
+.diveplan {
+    grid-area: diveplan;
+    background-color: #eee;
+}
+
+.diveconfig {
+    grid-area: diveconfig;
+    background-color: #666;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.diveconfig label {
+    text-align: right;
+    color: #eee;
+}
+
+.diveconfig input {
+    height: 18px;
+    width: 60px;
 }
 
 .row {
@@ -35,8 +95,8 @@ main {
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-  }
-  
+}
+
 .col {
     display: flex;
     flex-direction: column;
@@ -48,31 +108,43 @@ main {
     margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr;
-    grid-auto-rows: minmax(20px, auto);
     align-items: center;
 }
 
 .table-row {
     display: grid;
-    grid-template-columns: repeat(6, 100px);
-    grid-gap: 20px;
+    padding: 0px 10px 10px 0px;
+    grid-template-columns: repeat(5, 1fr) 80px;
+    grid-gap: 5px;
 }
 
+.table-row button {
+    height: 100%;
+    font-size: 11pt;
+    border: none;
+    font-weight: bold;
+    color: blue;
+}
 .table-row input {
     width: 100%;
+    text-align: right;
 }
 
-.table-row input.ascend, 
+.table-row input.ascend,
 .table-row input.descend {
     width: 80%;
     float: right;
     margin-right: -2px;
     background: transparent;
-    font-style: italic;
 }
 
 .table-col {
     text-align: right;
+}
+
+.table-label {
+    display: block;
+    text-align: left;
 }
 
 .ascend-row,
@@ -87,19 +159,17 @@ main {
 }
 
 .header-row {
-    font-weight: bold;
-    font-size: 16px;
-    text-align: right;
+    color: #666;
+    text-align: center;
 }
 .total-table {
     margin-top: 10px;
     border-top: 1px solid black;
 }
+
 .total-field {
     border: none;
     font-weight: bold;
-    text-align: right;
-    font-size: 16px;
 }
 
 .total-field input {
@@ -108,15 +178,12 @@ main {
 
 .edit-field {
     border: none;
-    font-size: 16px;
     border-bottom: 1px solid #ccc;
-    text-align: right;
 }
 
 .ro-field {
-    font-size: 16px;
     border: none;
-    text-align: right;
+    background: transparent;
 }
 
 .reserve-label {
@@ -124,6 +191,29 @@ main {
     padding-top: 5px;
 }
 
-#diveplan {
+.gas-out {
+    background-color: red;
+    color: white;
+}
 
+.gas-warn {
+    background-color: orange;
+    color: white;
+}
+
+.gas-plenty {
+    background-color: green;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    main {
+        display: grid;
+        grid-template-areas:
+            "divechart"
+            "diveplan"
+            "diveconfig";
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr;
+    }
 }
