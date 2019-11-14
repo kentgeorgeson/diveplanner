@@ -27,6 +27,50 @@
             <div class="divechart">
                 <canvas id="diveplan"></canvas>
             </div>
+            <div class="diveslate">
+                <div class="table">
+                    <div class="table-row header-row">
+                        <div class="table-col">
+                            D
+                        </div>
+                        <div class="table-col">
+                            t
+                        </div>
+                        <div class="table-col">
+                            TP
+                        </div>
+                    </div>
+                    <div class="table-row data-row slate-row">
+                        <div class="table-col">
+                            <input
+                                readonly
+                                class="ro-field slate-depth"
+                                type="number"
+                                min="0"
+                                max="999"
+                            />
+                        </div>
+                        <div class="table-col">
+                            <input
+                                readonly
+                                class="ro-field slate-time"
+                                type="number"
+                                min="0"
+                                max="999"
+                            />
+                        </div>
+                        <div class="table-col">
+                            <input
+                                readonly
+                                class="ro-field slate-tp"
+                                type="number"
+                                min="0"
+                                max="999"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="diveplan">
                 <div class="row">
                     <div class="table">
@@ -260,6 +304,16 @@
                 </div>
             </div>
             <div class="diveconfig">
+                <label for="water-type">Water (Fresh=34, Salt=33)</label>
+                <input
+                    required
+                    id="water-type"
+                    class="edit-field water-type"
+                    value="34"
+                    type="number"
+                    min="33"
+                    max="34"
+                />
                 <label for="tank-size">Tank Size (cu)</label>
                 <input
                     required

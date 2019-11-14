@@ -97,11 +97,12 @@ function calcTotals() {
     {
         /* Calc Atmospheric pressure based on depth of stop / 32 + 1 */
         var aP = 0
+        var waterdivisor = parseFloat($('#water-type').val())
         if ($(this).parent().parent().find('.depth').length) {
-            aP = Math.round((parseFloat($(this).parent().parent().find('.depth').val()) / 32 + 1) * 10) /10;
+            aP = Math.round((parseFloat($(this).parent().parent().find('.depth').val()) / waterdivisor + 1) * 10) /10;
         }
         if ($(this).parent().parent().find('.avg-depth').length) {
-            aP = Math.round((parseFloat($(this).parent().parent().find('.avg-depth').val()) / 32 + 1) * 10) /10;
+            aP = Math.round((parseFloat($(this).parent().parent().find('.avg-depth').val()) / waterdivisor + 1) * 10) /10;
         }
         $(this).val(aP);
      
@@ -114,7 +115,6 @@ function calcTotals() {
     sum = 0;
     $('.sac').each(function()
     {
-        
         var sac = Math.round( parseFloat($(this).parent().parent().find('.ap').val()) * $('.sac-min').val() * 10) / 10;
         $(this).parent().parent().find('.sac').val(sac);
 

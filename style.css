@@ -7,7 +7,7 @@ body {
 main {
     display: grid;
     grid-template-areas:
-        "divechart divechart"
+        "divechart diveslate"
         "diveplan diveconfig";
     grid-template-rows: 200px 1fr;
     grid-template-columns: 2fr 1fr;
@@ -65,6 +65,18 @@ nav {
     padding: 20px;
 }
 
+.diveslate {
+    grid-area: diveslate;
+    background-color: #175963c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+}
+
+.diveslate .table {
+    width: 100%;
+}
 .diveplan {
     grid-area: diveplan;
     background-color: #fff;
@@ -203,6 +215,7 @@ nav {
         grid-template-areas:
             "divechart"
             "diveplan"
+            "diveslate"
             "diveconfig";
         grid-template-rows: 1fr;
         grid-template-columns: 1fr;
