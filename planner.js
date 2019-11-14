@@ -1,3 +1,35 @@
+function drawDivePlan() {
+    var c = document.getElementById("diveplan");
+    var ctx = c.getContext("2d");
+    ctx.strokeStyle = "#178ba7";
+    ctx.clearRect(0, 0, c.width, c.height);
+    var width = c.width;
+    var height = c.height;
+    ctx.beginPath();
+    ctx.moveTo(10, 10);
+    ctx.lineTo(width, 10);
+    ctx.stroke();
+    
+    var startx = 10;
+    var starty = 10;
+    var count = 1;
+    var time = 0
+    var depth = 0
+
+    $('.stop-row').each( function() {
+        ctx.strokeStyle = "#068d29";
+        ctx.beginPath();
+        ctx.moveTo(time + startx, depth + starty);
+        count += 1;
+        startx = 10 * count;
+        starty = parseFloat($(this).find('input.depth').val())
+        console.log(startx, starty)
+        ctx.lineTo(startx, starty);
+        ctx.stroke();
+
+    });
+}
+
 function calcTotals() {
 
     var sum = 0;
@@ -58,10 +90,10 @@ function calcTotals() {
     $('.time').each(function()
     {
         if ($(this).hasClass('ascend')) {
-            $(this).val(Math.round(max / parseFloat($('.ascent-rate').val()) * 10) /10)
+            $(this).val(Math.ceil(max / parseFloat($('.ascent-rate').val())))
         }
         if ($(this).hasClass('descend')) {
-            $(this).val(Math.round(max / parseFloat($('.descent-rate').val()) * 10) /10)
+            $(this).val(Math.ceil(max / parseFloat($('.descent-rate').val())))
         }
         var vol = Math.ceil(parseFloat($(this).val()) * $(this).parent().parent().find('.sac').val());
         $(this).parent().parent().find('.vol').val(vol);
@@ -71,6 +103,9 @@ function calcTotals() {
     });
     $('.total-time').val(sum);
 
+    var reservevol = Math.round(parseFloat($('.end-psi').val()) / 3000 * parseFloat($('.tank-size').val()) * 10 ) /10
+    $('.reserve-vol').val(reservevol)
+
     sum = 0;
     $('.vol').each(function()
     {
@@ -78,11 +113,18 @@ function calcTotals() {
             sum += parseFloat($(this).val());
         }
     });
-    $('.total-vol').val(sum);
+    $('.total-vol').val(sum + reservevol);
 
+    if (parseFloat($('.total-vol').val()) >= parseFloat($('.tank-size').val())) {
+        $('.total-vol').addClass('gas-out');
+    } else if (parseFloat($('.total-vol').val()) >= parseFloat($('.tank-size').val())*.9) {
+        $('.total-vol').addClass('gas-warn');
+    } else {
+        $('.total-vol').addClass('gas-plents'); 
+    }
 
+    drawDivePlan();
 }
-
 
 $(document).on('click', '.duplicate-row', function() {
         $(this).parent().parent().clone().insertAfter( $(this).parent().parent() );

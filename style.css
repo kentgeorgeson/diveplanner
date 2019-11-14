@@ -71,6 +71,10 @@ main {
     font-style: italic;
 }
 
+.table-col {
+    text-align: right;
+}
+
 .ascend-row,
 .descend-row {
     color: #666;
@@ -113,4 +117,13 @@ main {
     font-size: 16px;
     border: none;
     text-align: right;
+}
+
+.reserve-label {
+    display: block;
+    padding-top: 5px;
+}
+
+#diveplan {
+
 }

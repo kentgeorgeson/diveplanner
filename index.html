@@ -11,11 +11,14 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <div class="chart"></div>
+        <div class="chart"><canvas id="diveplan" width="100%" height="100%"></canvas></div>          
         <main>            
             <div class="row">
                 <div class="table">
                     <div class="table-row header-row">
+                        <div class="table-col">
+                            Tank Size (cu')
+                        </div>
                         <div class="table-col">
                             Starting PSI
                         </div>
@@ -29,15 +32,18 @@
                             Descent ft/min
                         </div>
                         <div class="table-col">
-                            End Dive Pressure
+                            End Dive Reserve
                         </div>
                     </div>
                     <div class="table-row data-row">
                         <div class="table-col">
+                            <input required class="edit-field tank-size" placeholder="80" value="80" type="number" min="0" max="170"/>
+                        </div>
+                        <div class="table-col">
                             <input required class="edit-field starting-pressure" placeholder="3000" value="3000" type="number" min="0" max="9999"/>
                         </div>
                         <div class="table-col">
-                            <input required class="edit-field sac-min" placeholder="0.8" value="0.8" type="number" min="0" max="99"/>
+                            <input required class="edit-field sac-min" placeholder="0.8" value="0.8" type="number" min="0" max="9"/>
                         </div>
                         <div class="table-col">
                             <input required class="edit-field ascent-rate" value="30" type="number" min="0" max="99"/>
@@ -74,7 +80,7 @@
                             &nbsp;
                         </div>
                     </div>
-                    <div class="table-row data-row">
+                    <div class="table-row data-row stop-row">
                         <div class="table-col">
                             <input required class="edit-field depth" placeholder="50" type="number" min="0" max="999"/>
                         </div>
@@ -135,6 +141,26 @@
                                 &nbsp;
                             </div>
                         </div>
+                        <div class="table-row data-row reserve-row">
+                                <div class="table-col">        
+                                    &nbsp;
+                                </div>
+                                <div class="table-col">
+                                        &nbsp;
+                                </div>
+                                <div class="table-col">
+                                        &nbsp;
+                                </div>
+                                <div class="table-col">
+                                        <span class="reserve-label">+ Reserve</span>
+                                </div>
+                                <div class="table-col">
+                                    <input readonly class="ro-field reserve-vol" placeholder="0" type="number" min="0"  max="999"/>
+                                </div>
+                                <div class="table-col">
+                                    &nbsp;
+                                </div>
+                            </div>
                 </div>
             </div>
             <div class="row">
