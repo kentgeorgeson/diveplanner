@@ -1,16 +1,9 @@
 function drawDivePlan() {
     var c = document.getElementById("diveplan");
     var ctx = c.getContext("2d");
-    ctx.strokeStyle = "#6fffe9";
     ctx.clearRect(0, 0, c.width, c.height);
     var width = c.width;
     var height = c.height;
-    var scalefactor = 2;
-    ctx.beginPath();
-    ctx.moveTo(20, 20);
-    console.log(width);
-    ctx.lineTo(width, 20);
-    ctx.stroke();
     
     var startx = 10;
     var starty = 10;
@@ -19,13 +12,28 @@ function drawDivePlan() {
     var depth = 0 + startx;
 
     $('.stop-row').each( function() {
+        
         ctx.strokeStyle = "#fff";
         ctx.beginPath();
-        ctx.moveTo(time * scalefactor, depth * scalefactor);
+        ctx.moveTo(time, depth);
         depth = parseFloat($(this).find('input.depth').val()) + starty
+        descendtime = depth / parseFloat($(this).find('descent-rate').val())
         time = time + parseFloat($(this).find('input.time').val())
-        ctx.lineTo(time * scalefactor, depth * scalefactor);
+        ctx.lineTo(time, depth);
         ctx.stroke();
+
+        /* Start at previous X & Y */
+
+        /* Calc Change in depth */
+            /* If descending, take descend depth * rate of descent */
+
+            /* If ascending, take ascend depth * rate of ascend */
+
+            /* add to time */
+
+        /* Draw previous to at depth */
+
+        /* Maintain depth for duration given and draw from arrival to departure */
 
     });
 }
