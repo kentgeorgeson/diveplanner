@@ -5,26 +5,26 @@ function drawDivePlan() {
     ctx.clearRect(0, 0, c.width, c.height);
     var width = c.width;
     var height = c.height;
+    var scalefactor = 2;
     ctx.beginPath();
-    ctx.moveTo(10, 10);
-    ctx.lineTo(width, 10);
+    ctx.moveTo(20, 20);
+    console.log(width);
+    ctx.lineTo(width, 20);
     ctx.stroke();
     
     var startx = 10;
     var starty = 10;
     var count = 1;
-    var time = 0
-    var depth = 0
+    var time = 0 + starty;
+    var depth = 0 + startx;
 
     $('.stop-row').each( function() {
         ctx.strokeStyle = "#068d29";
         ctx.beginPath();
-        ctx.moveTo(time + startx, depth + starty);
-        count += 1;
-        startx = 10 * count;
-        starty = parseFloat($(this).find('input.depth').val())
-        console.log(startx, starty)
-        ctx.lineTo(startx, starty);
+        ctx.moveTo(time * scalefactor, depth * scalefactor);
+        depth = parseFloat($(this).find('input.depth').val()) + starty
+        time = time + parseFloat($(this).find('input.time').val())
+        ctx.lineTo(time * scalefactor, depth * scalefactor);
         ctx.stroke();
 
     });
