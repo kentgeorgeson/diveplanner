@@ -1,0 +1,116 @@
+.navbar {
+    border-bottom: 1px solid grey;
+}
+
+body {
+    font-family: sans-serif;
+    width: 760px;
+    min-height: 100vh;
+    margin: 0 auto;
+    border: 1px solid;
+    padding: 10px;
+}
+
+.config {
+    margin-top: 20px;
+
+}
+
+.chart {
+    min-height: 200px;
+    background: #ccc;
+}
+
+.config {
+    min-height: 40px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+.col {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+
+.table {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: minmax(20px, auto);
+    align-items: center;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    grid-gap: 20px;
+}
+
+.table-row input {
+    width: 100%;
+}
+
+.table-row input.ascend, 
+.table-row input.descend {
+    width: 80%;
+    float: right;
+    margin-right: -2px;
+    background: transparent;
+    font-style: italic;
+}
+
+.ascend-row,
+.descend-row {
+    color: #666;
+    background-color: #eee;
+}
+
+.ascend-row i,
+.descend-row i {
+    padding: 2px;
+}
+
+.header-row {
+    font-weight: bold;
+    font-size: 16px;
+    text-align: right;
+}
+.total-table {
+    margin-top: 10px;
+    border-top: 1px solid black;
+}
+.total-field {
+    border: none;
+    font-weight: bold;
+    text-align: right;
+    font-size: 16px;
+}
+
+.total-field input {
+    margin-right: 20px;
+}
+
+.edit-field {
+    border: none;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    text-align: right;
+}
+
+.ro-field {
+    font-size: 16px;
+    border: none;
+    text-align: right;
+}

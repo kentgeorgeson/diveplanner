@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Simple Dive Planner</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/8abb421801.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="reset.css" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="chart"></div>
+        <main>            
+            <div class="row">
+                <div class="table">
+                    <div class="table-row header-row">
+                        <div class="table-col">
+                            Starting PSI
+                        </div>
+                        <div class="table-col">
+                            SAC p/min
+                        </div>
+                        <div class="table-col">
+                            Ascent ft/min
+                        </div>
+                        <div class="table-col">
+                            Descent ft/min
+                        </div>
+                        <div class="table-col">
+                            End Dive Pressure
+                        </div>
+                    </div>
+                    <div class="table-row data-row">
+                        <div class="table-col">
+                            <input required class="edit-field starting-pressure" placeholder="3000" value="3000" type="number" min="0" max="9999"/>
+                        </div>
+                        <div class="table-col">
+                            <input required class="edit-field sac-min" placeholder="0.8" value="0.8" type="number" min="0" max="99"/>
+                        </div>
+                        <div class="table-col">
+                            <input required class="edit-field ascent-rate" value="30" type="number" min="0" max="99"/>
+                        </div>
+                        <div class="table-col">
+                            <input required class="edit-field descent-rate" value="30" type="number" min="0" max="99"/>
+                        </div>
+                        <div class="table-col">
+                            <input required class="edit-field end-psi" value="500" type="number" min="0" max="9999"/>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="table">
+                    <div class="table-row header-row">
+                        <div class="table-col">
+                            D
+                        </div>
+                        <div class="table-col">
+                            Ap
+                        </div>
+                        <div class="table-col">
+                            RMV/SAC
+                        </div>
+                        <div class="table-col">
+                            t
+                        </div>
+                        <div class="table-col">
+                            Vol. cu'
+                        </div>
+                        <div class="table-col">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="table-row data-row">
+                        <div class="table-col">
+                            <input required class="edit-field depth" placeholder="50" type="number" min="0" max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field ap" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field sac" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input class="edit-field time" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field vol" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <button class="duplicate-row">+</button> /
+                            <button class="remove-row">-</button>
+                        </div>
+                    </div>
+                    <div class="table-row data-row descend-row">
+                        <div class="table-col">
+                            <input readonly class="ro-field descend desc-depth avg-depth" placeholder="50" type="number" min="0" max="999"/><i class="far fa-thumbs-down"></i>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field descend ap" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field descend sac" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field descend time" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            <input readonly class="ro-field descend vol" placeholder="0" type="number" min="0"  max="999"/>
+                        </div>
+                        <div class="table-col">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="table-row data-row ascend-row">
+                            <div class="table-col">        
+                                <input readonly class="ro-field ascend asc-depth avg-depth" placeholder="50" type="number" min="0" max="999"/><i class="far fa-thumbs-up"></i>
+                            </div>
+                            <div class="table-col">
+                                <input readonly class="ro-field ascend ap" placeholder="0" type="number" min="0"  max="999"/>
+                            </div>
+                            <div class="table-col">
+                                <input readonly class="ro-field ascend sac" placeholder="0" type="number" min="0"  max="999"/>
+                            </div>
+                            <div class="table-col">
+                                <input readonly class="ro-field ascend time" placeholder="0" type="number" min="0"  max="999"/>
+                            </div>
+                            <div class="table-col">
+                                <input readonly class="ro-field ascend vol" placeholder="0" type="number" min="0"  max="999"/>
+                            </div>
+                            <div class="table-col">
+                                &nbsp;
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="total-table">
+                    <div class="table-row">
+                        <div class="table-col">
+                            &nbsp;
+                        </div>
+                        <div class="table-col">
+                                &nbsp;
+                        </div>
+                        <div class="table-col">
+                                &nbsp;
+                        </div>
+                        <div class="table-col">
+                            <input class="total-field total-time" placeholder="0" />
+                        </div>
+                        <div class="table-col">
+                            <input class="total-field total-vol" placeholder="0" />
+                        </div>
+                        <div class="table-col">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script src="planner.js"></script>
+</html>
