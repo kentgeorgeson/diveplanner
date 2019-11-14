@@ -19,6 +19,7 @@ nav {
 
 .navbar {
     display: flex;
+    height: 40px;
     justify-content: space-between;
     align-items: center; /* Center Vertical */
 }
