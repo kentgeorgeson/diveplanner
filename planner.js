@@ -86,9 +86,7 @@ function markStop(fromtime, fromdepth, totime, todepth) {
 }
 
 function calcDivePlan() {
-    var c = document.getElementById("diveplan");
-    c.setAttribute('width', '400');
-    c.setAttribute('height', '170');   
+    var c = document.getElementById("diveplan");   
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, c.width, c.height);
     var width = c.width;
@@ -257,5 +255,8 @@ $(document).on('keyup', '.edit-field', function() {
 })
 
 $(document).ready(function() {
+    var c = document.getElementById("diveplan");
+    c.setAttribute('width', $('.divechart').width());
+    c.setAttribute('height', '170');
     calcTotals();
 })

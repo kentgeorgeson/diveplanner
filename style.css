@@ -72,9 +72,6 @@ nav {
     background-color: #175963c2;
 }
 
-
-
-
 .diveplan {
     grid-area: diveplan;
     background-color: #fff;
@@ -189,7 +186,19 @@ nav {
 
 .edit-field {
     border: none;
-    border-bottom: 1px solid #ccc;
+    background: palegoldenrod;
+}
+
+.data-row:nth-child(odd) .edit-field {
+    border: 2px solid #17596338 ;
+}
+
+.data-row:nth-child(even) .edit-field {
+    border: 2px solid white ;
+}
+
+.edit-field:focus {
+    border: 2px solid blue !important;
 }
 
 .ro-field {
