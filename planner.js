@@ -280,6 +280,7 @@ $(document).on('click', "input[name='water-type']", function() {
 $(window).bind('resize', function () {
     var c = document.getElementById("diveplan");
     c.setAttribute('width', $('.divechart').width());
+    calcTotals();
 }).trigger('resize');
 
 $(document).ready(function() {
