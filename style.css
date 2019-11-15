@@ -132,7 +132,7 @@ a.active {
 
 .table-row {
     display: grid;
-    grid-template-columns: 120px repeat(8, 1fr);
+    grid-template-columns: 120px repeat(7, 1fr) 60px 1px;
     column-gap: 10px;
     row-gap: 5px;
     justify-items: right;
