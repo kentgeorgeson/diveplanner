@@ -277,11 +277,11 @@ $(document).on('click', "input[name='water-type']", function() {
     calcTotals();
 })
 
-$(window).bind('resize', function () {
+$(window).resize(function(){
     var c = document.getElementById("diveplan");
     c.setAttribute('width', $('.divechart').width());
     calcTotals();
-}).trigger('resize');
+});
 
 $(document).ready(function() {
     var c = document.getElementById("diveplan");
