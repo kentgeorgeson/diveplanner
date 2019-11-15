@@ -18,14 +18,13 @@
             <a href="https://kentgeorgeson.github.io/diveplanner/" class="logo">
                 Dive Planner
             </a>
-           
         </nav>
         <main>
             <div class="divechart">
                 <canvas id="diveplan"></canvas>
             </div>
             <div class="diveslate">
-                <span class='slate-heading'>Your Dive Slate</span>
+                <span class="slate-heading">Your Dive Slate</span>
                 <div class="table">
                     <div class="table-row header-row">
                         <div class="table-col">
@@ -144,7 +143,7 @@
                             <div class="table-col run-time">
                                 <input
                                     readonly
-                                    class="ro-field cumulative-time"
+                                    class="ro-field run-time"
                                     type="number"
                                     min="0"
                                     max="999"
@@ -162,7 +161,7 @@
                             <div class="table-col  run-vol">
                                 <input
                                     readonly
-                                    class="ro-field cumulative-vol"
+                                    class="ro-field run-vol"
                                     type="number"
                                     min="0"
                                     max="999"
@@ -171,6 +170,78 @@
                             <div class="table-col actions center">
                                 <button class="duplicate-row">+</button>
                                 <button class="remove-row">-</button>
+                            </div>
+                        </div>
+                        <div class="table-row data-row final-ascent-row">
+                            <div class="table-col row-label">
+                                <i class="far fa-thumbs-up"></i
+                                ><span class="table-label">Final</span>
+                            </div>
+                            <div class="table-col">
+                                <input
+                                    readonly
+                                    class="ro-field final-depth depth"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col">
+                                <input
+                                    readonly
+                                    class="ro-field final ap"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col">
+                                <input
+                                    readonly
+                                    class="ro-field final sac"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col">
+                                <input
+                                    readonly
+                                    class="ro-field final time"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col final run-time">
+                                    <input
+                                    readonly
+                                    class="ro-field final run-time"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col">
+                                <input
+                                    readonly
+                                    class="ro-field final vol"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col final run-vol">
+                                    <input
+                                    readonly
+                                    class="ro-field final run-vol"
+                                    type="number"
+                                    min="0"
+                                    max="999"
+                                />
+                            </div>
+                            <div class="table-col final center">
+                                &nbsp;
                             </div>
                         </div>
                         <div class="table-row data-row descend-row">
@@ -235,8 +306,7 @@
                         </div>
                         <div class="table-row data-row ascend-row">
                             <div class="table-col row-label">
-                                <i class="far fa-thumbs-up"></i
-                                ><span class="table-label">Ascent</span>
+                                    <i class="far fa-hand-point-right"></i><span class="table-label">Ascent</span>
                             </div>
                             <div class="table-col">
                                 <input

@@ -22,7 +22,7 @@ function refreshSlate() {
 
         $('#slate-depth-' + count).val(parseFloat($(this).find('input.depth').val()));
 
-        cumulativetime += parseFloat($(this).find('input.time').val());
+        cumulativetime += parseFloat($(this).find('input.run-time').val());
         $('#slate-time-' + count).val(cumulativetime);
 
         cumulativevol += parseFloat($(this).find('input.vol').val());
@@ -61,28 +61,37 @@ function refreshSlate() {
 function markTime(time) {
     var c = document.getElementById("diveplan");
     var ctx = c.getContext("2d");
-    var timescalefactor = 10.0;
+    var timescalefactor = (c.width - 10) / parseFloat($('.total-time').val());
     ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
     ctx.strokeStyle = "#fff";
-    ctx.font = "15px Arial";
+    ctx.lineWidth = 1;
+    ctx.font = "12px Arial";
     ctx.fillStyle = "white";
     ctx.beginPath();
     ctx.moveTo(time * timescalefactor, 0);
     ctx.lineTo(time * timescalefactor, c.height - 30);
     ctx.stroke();
-    ctx.fillText(time, (time * timescalefactor) - 1, c.height - 15)
+    ctx.fillText(time, (time * timescalefactor), c.height - 15)
 }
 
 function markStop(fromtime, fromdepth, totime, todepth) {
     var c = document.getElementById("diveplan");
     var ctx = c.getContext("2d");
-    var timescalefactor = 10.0;
+    var timescalefactor = (c.width - 10) / parseFloat($('.total-time').val());
     ctx.setLineDash([0]);/*dashes are 5px and spaces are 3px*/
+    ctx.lineWidth = 2;
     ctx.strokeStyle = "#fff";
     ctx.beginPath();
     ctx.moveTo(fromtime * timescalefactor, fromdepth);
     ctx.lineTo(totime * timescalefactor, todepth);
     ctx.stroke();
+
+    if (fromdepth == todepth) {
+        ctx.font = "12px Arial";
+        ctx.fillStyle = "#eee";
+        ctx.fillText(todepth + "'", (fromtime * timescalefactor), todepth + 15)   
+    }
+
 }
 
 function calcDivePlan() {
@@ -112,7 +121,6 @@ function calcDivePlan() {
         depth = Math.ceil(prevdepth + newdepth);
 
         runvol += parseFloat($(this).find('.vol').val())
-        
 
         markStop(prevtime, prevdepth, time, depth);
         prevtime = time;
@@ -124,19 +132,26 @@ function calcDivePlan() {
         markStop(prevtime, depth, time, depth);
         markTime(time);
 
-        $(this).find('input.cumulative-time').val(time)
-        $(this).find('input.cumulative-vol').val(runvol)
+        $(this).find('input.run-time').val(time)
+        $(this).find('input.run-vol').val(runvol)
 
         count++;
-    });   
+    });  
+
     finaltime = Math.round(parseFloat($('.total-time').val()))
-    markStop(time, depth, finaltime, 0);    
+
+    $('.final.run-time').val(finaltime);
+    $('.final.run-vol').val(runvol + parseFloat($('.final.vol').val()));
+    markStop(time, depth, finaltime , 0);
 }
 
 function calcTotals() {
     var sum = 0;
     var count = 0;
     var max = 0
+
+    $('.final-depth').val(parseFloat($('.edit-field.depth:last').val()))
+
     $('.depth').each(function()
         {
            /* Capture Max Depth */
@@ -191,6 +206,9 @@ function calcTotals() {
     sum = 0;
     $('.time').each(function()
     {
+        if ($(this).hasClass('final')) {
+            $(this).val(Math.ceil(parseFloat($('.final-depth').val()) / parseFloat($('.ascent-rate').val())))
+        }
         if ($(this).hasClass('ascend')) {
             $(this).val(Math.ceil(max / parseFloat($('.ascent-rate').val())))
         }
@@ -232,7 +250,8 @@ function calcTotals() {
     }
 
     calcDivePlan();
-    refreshSlate()
+    refreshSlate();
+    $('.ro-field').attr('tabindex', '-1');
 }
 
 $(document).on('click', '.duplicate-row', function() {
@@ -254,9 +273,15 @@ $(document).on('keyup', '.edit-field', function() {
     calcTotals();
 })
 
+$(window).bind('resize', function () {
+    var c = document.getElementById("diveplan");
+    c.setAttribute('width', $('.divechart').width());
+}).trigger('resize');
+
 $(document).ready(function() {
     var c = document.getElementById("diveplan");
     c.setAttribute('width', $('.divechart').width());
     c.setAttribute('height', '170');
+
     calcTotals();
 })

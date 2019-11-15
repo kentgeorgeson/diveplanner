@@ -190,11 +190,11 @@ nav {
 }
 
 .data-row:nth-child(odd) .edit-field {
-    border: 2px solid #17596338 ;
+    border: 2px solid transparent ;
 }
 
 .data-row:nth-child(even) .edit-field {
-    border: 2px solid white ;
+    border: 2px solid transparent ;
 }
 
 .edit-field:focus {
