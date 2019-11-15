@@ -9,8 +9,8 @@ main {
     grid-template-areas:
         "divechart diveslate"
         "diveplan diveconfig";
-    grid-template-rows: 200px 1fr;
-    grid-template-columns: 2fr 1fr;
+    grid-template-rows: minmax(250px, 1fr) 1fr;
+    grid-template-columns: 2fr minmax(350px, 1fr);
 }
 
 nav {
@@ -68,13 +68,15 @@ nav {
 }
 
 .divechart canvas {
-    flex: 1 1 60%;
+    -webkit-flex: 1 1 0%;
+    flex: 1 1 0%;
 }
 
 .diveslate {
     grid-area: diveslate;
     width: 100%;
     background-color: #175963c2;
+    overflow-y: scroll;
 }
 
 .diveplan {
@@ -262,7 +264,7 @@ nav {
     text-align: center;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 1000px) {
     main {
         height: 100vh;
         grid-template-areas:
@@ -270,8 +272,8 @@ nav {
             "diveplan"
             "diveslate"
             "diveconfig";
-        grid-template-rows: 200px 1fr 1fr 1fr;
-        grid-template-columns: 100vw;
+        grid-template-rows: 200px minmax(250px, 1fr) minmax(250px, 1fr) minmax(250px, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .table-row {

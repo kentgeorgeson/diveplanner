@@ -92,7 +92,7 @@ function markStop(fromtime, fromdepth, totime, todepth) {
     var c = document.getElementById("diveplan");
     var ctx = c.getContext("2d");
     var timescalefactor = (c.width - 10) / parseFloat($('.total-time').val());
-    ctx.setLineDash([0]);/*dashes are 5px and spaces are 3px*/
+    ctx.setLineDash([]);;/* reset to solid */
     ctx.lineWidth = 2;
     ctx.strokeStyle = "#fff";
     ctx.beginPath();
@@ -293,6 +293,7 @@ $(document).on('click', "input[name='water-type']", function() {
 
 $(window).resize(function(){
     var c = document.getElementById("diveplan");
+    c.setAttribute('width', 300);
     c.setAttribute('width', $('.divechart').width());
     calcTotals();
 });
