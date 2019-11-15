@@ -132,7 +132,7 @@ a.active {
 
 .table-row {
     display: grid;
-    grid-template-columns: 120px repeat(7, 1fr) 60px 1px;
+    grid-template-columns: 120px repeat(7, 1fr) 60px 5px;
     column-gap: 10px;
     row-gap: 5px;
     justify-items: right;
@@ -301,7 +301,7 @@ a.active {
         overflow-y: scroll;
     }
     .table-row {
-        grid-template-columns: 30px repeat(5, 1fr) 60px 1px;
+        grid-template-columns: 30px repeat(5, 1fr) 60px 5px;
     }
 
     .diveslate .table-row {
