@@ -7,10 +7,10 @@ body {
 main {
     display: grid;
     grid-template-areas:
-        "divechart diveslate"
-        "diveplan diveconfig";
+        "divechart"
+        "diveplan";
     grid-template-rows: minmax(250px, 1fr) 1fr;
-    grid-template-columns: 2fr minmax(350px, 1fr);
+    grid-template-columns: 1fr;
 }
 
 nav {
@@ -18,6 +18,9 @@ nav {
 }
 
 .navbar {
+    position: fixed;
+    top: 0px;
+    left: 0px;
     display: flex;
     width: 100%;
     height: 40px;
@@ -62,6 +65,7 @@ nav {
 
 .divechart {
     grid-area: divechart;
+    margin-top: 40px;
     min-height: 200px;
     background-color:  	#175963;
     padding: 20px;
@@ -73,8 +77,13 @@ nav {
 }
 
 .diveslate {
-    grid-area: diveslate;
-    width: 100%;
+    display: none;
+    float: left;
+    position:absolute;
+    z-index: 99;
+    top: 40px;
+    width: 100vw;
+    height: 100vh;
     background-color: #175963c2;
     overflow-y: scroll;
 }
@@ -85,13 +94,22 @@ nav {
 }
 
 .diveconfig {
-    grid-area: diveconfig;
-    background-color: #06263a;
-
+    float: right;
+    position: absolute;
+    top: 40px;
+    left: 100vw;
+    margin: 0px;
     padding: 20px;
+    width: 200px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
+    background-color: #07324d;
+}
+
+a.active {
+    background: #fff;
+    color: orangered;  
 }
 
 .diveconfig label {
@@ -102,7 +120,8 @@ nav {
 
 .diveconfig input {
     height: 18px;
-    width: 60px;
+    width: 100%;
+    text-align: right;
     font-size: 13px;
 }
 
@@ -179,6 +198,7 @@ nav {
 }
 
 .header-row {
+    width: 100%;
     color: #fff;
     background: #06263a;
     justify-items: right;
@@ -272,10 +292,8 @@ nav {
         height: 100vh;
         grid-template-areas:
             "divechart"
-            "diveplan"
-            "diveslate"
-            "diveconfig";
-        grid-template-rows: 200px minmax(250px, 1fr) minmax(250px, 1fr) minmax(350px, 1fr);
+            "diveplan";
+        grid-template-rows: 200px minmax(250px, 1fr);
         grid-template-columns: 1fr;
     }
 
