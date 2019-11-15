@@ -22,11 +22,11 @@ function refreshSlate() {
 
         $('#slate-depth-' + count).val(parseFloat($(this).find('input.depth').val()));
 
-        cumulativetime += parseFloat($(this).find('input.run-time').val());
+        cumulativetime = parseFloat($(this).find('input.run-time').val());
         $('#slate-time-' + count).val(cumulativetime);
 
-        cumulativevol += parseFloat($(this).find('input.vol').val());
-        consumedpsi = Math.round(cumulativevol / tanksize * startingvol / 100) * 100;
+        cumulativevol = parseFloat($(this).find('input.run-vol').val());
+        consumedpsi = Math.round(cumulativevol / tanksize * startingvol / 50) * 50;
         turningpoint = startingvol - consumedpsi
         $('#slate-tp-' + count).val(turningpoint);
 
@@ -51,9 +51,23 @@ function refreshSlate() {
 
     cumulativevol = parseFloat($('.total-vol').val());
     reservevol = parseFloat($('.end-psi').val());
-    consumedpsi = Math.round(cumulativevol / tanksize * startingvol / 100) * 100;
+    consumedpsi = Math.round(cumulativevol / tanksize * startingvol / 50) * 50;
     turningpoint = startingvol - consumedpsi + reservevol
     $('#slate-tp-' + count).val(turningpoint);
+
+    if (parseFloat($('.total-vol').val()) >= parseFloat($('.tank-size').val())) {
+        $('#slate-tp-' + count).addClass('gas-out');
+        $('#slate-tp-' + count).removeClass('gas-warn'); 
+        $('#slate-tp-' + count).removeClass('gas-plenty');
+    } else if (parseFloat($('.total-vol').val()) >= parseFloat($('.tank-size').val())*.9) {
+        $('#slate-tp-' + count).removeClass('gas-out');
+        $('#slate-tp-' + count).addClass('gas-warn'); 
+        $('#slate-tp-' + count).removeClass('gas-plenty'); 
+    } else {
+        $('#slate-tp-' + count).removeClass('gas-out');
+        $('#slate-tp-' + count).removeClass('gas-warn'); 
+        $('#slate-tp-' + count).addClass('gas-plenty'); 
+    }
 
 }
 
