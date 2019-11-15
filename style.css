@@ -189,12 +189,9 @@ nav {
     background: palegoldenrod;
 }
 
-.data-row:nth-child(odd) .edit-field {
-    border: 2px solid transparent ;
-}
 
-.data-row:nth-child(even) .edit-field {
-    border: 2px solid transparent ;
+.edit-field {
+    border: 2px solid white ;
 }
 
 .edit-field:focus {

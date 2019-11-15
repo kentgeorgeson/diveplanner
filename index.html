@@ -442,16 +442,15 @@
                 </div>
             </div>
             <div class="diveconfig">
-                <label for="water-type">Water (Fresh=34, Salt=33)</label>
-                <input
-                    required
-                    id="water-type"
-                    class="edit-field water-type"
-                    value="34"
-                    type="number"
-                    min="33"
-                    max="34"
-                />
+                
+                <div>
+                    <input type="radio" id="fresh" name="water-type" value="34" checked>
+                    <label for="fresh">Fresh Water</label>
+                </div>
+                <div>
+                    <input type="radio" id="salt" name="water-type" value="33">
+                    <label for="fresh">Salt Water</label>
+                </div>
                 <label for="tank-size">Tank Size (cu)</label>
                 <input
                     required

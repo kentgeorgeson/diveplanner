@@ -176,7 +176,7 @@ function calcTotals() {
     {
         /* Calc Atmospheric pressure based on depth of stop / 32 + 1 */
         var aP = 0
-        var waterdivisor = parseFloat($('#water-type').val())
+        var waterdivisor = parseFloat($("input[name='water-type']:checked").val());
         if ($(this).parent().parent().find('.depth').length) {
             aP = Math.round((parseFloat($(this).parent().parent().find('.depth').val()) / waterdivisor + 1) * 10) /10;
         }
@@ -270,6 +270,10 @@ $(document).on('click', 'input', function() {
 });
 
 $(document).on('keyup', '.edit-field', function() {
+    calcTotals();
+})
+
+$(document).on('click', "input[name='water-type']", function() {
     calcTotals();
 })
 
